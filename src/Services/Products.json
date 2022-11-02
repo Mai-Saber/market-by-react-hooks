@@ -1,0 +1,70 @@
+[
+{
+"productName" : "Apple",
+"productId" : 1,
+"productColor" : [
+{"colorName" : "Red",
+"colorPrice" : 200
+},
+{
+"colorName" : "Blue",
+"colorPrice" : 250
+}
+]
+},
+{
+"productName" : "Orange",
+"productId" : 2,
+"productColor" : [
+{
+"colorName" : "Red",
+"colorPrice" : 100
+},
+{
+"colorName" : "Blue",
+"colorPrice" : 125
+}
+]
+},
+{
+"productName" : "Banana",
+"productId" : 3,
+"productColor" : [
+{
+"colorName" : "Red",
+"colorPrice" : 500
+},
+{
+"colorName" : "Blue",
+"colorPrice" : 550
+}
+]
+},
+{
+"productName" : "Coconut",
+"productId" : 4,
+"productColor" : [
+{
+"colorName" : "Red",
+"colorPrice" : 100
+},
+{
+"colorName" : "Blue",
+"colorPrice" : 125
+}
+]
+},
+{"productName" : "Mango",
+"productId" : 5,
+"productColor" : [
+{
+"colorName" : "Red",
+"colorPrice" : 300
+},
+{
+"colorName" : "Blue",
+"colorPrice" : 325
+}
+]
+}
+]

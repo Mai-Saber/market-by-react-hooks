@@ -1,0 +1,47 @@
+.addBox {
+  background-color: #fff;
+  border: 1px solid rgb(41, 60, 202);
+  padding: 5px;
+  margin: auto;
+  margin-bottom: 10px;
+  width: 60%;
+  border-radius: 10px;
+  text-align: center;
+  display: none;
+}
+.addBox h1 {
+  color: blue;
+}
+.addBox input {
+  width: fit-content;
+  height: 30px;
+  margin: 5px;
+}
+.addBox button {
+  display: block;
+  margin: auto;
+}
+/* ////////// */
+
+.content table th,
+.content table td {
+  width: 30%;
+  border: 3px solid rgb(157, 157, 157);
+  padding: 5px;
+}
+.content button {
+  margin-left: 20px !important;
+}
+/* ///////// */
+@media (min-width: 100px) and (max-width: 1200px) {
+  .content table {
+    display: inline-block;
+    height: 80vh !important;
+    overflow: auto;
+  }
+  .addBox input {
+    display:inline-block;
+    width: 63%;
+    margin:0 0 20px 0 !important;
+    }
+}

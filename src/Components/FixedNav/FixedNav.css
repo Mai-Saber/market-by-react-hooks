@@ -1,0 +1,60 @@
+.fixedNav {
+  background: #7f00ff;
+  background: -webkit-linear-gradient(to right, #b712cd, #6f20be);
+  background: linear-gradient(to right, #9d24ad, #7a20d3);
+  color: white;
+  padding-left: 2rem;
+  z-index: 999;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  height: 10vh;
+  margin-bottom: 20px;
+}
+/*//////////////*/
+
+.fixedNav .App-logo {
+  position: relative;
+  top: -20px;
+  height: 10vh;
+  width: 5vw;
+  border-radius: 50%;
+}
+
+.fixedNav ul li {
+  margin-top: 20px;
+  list-style: none;
+}
+.fixedNav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.fixedNav ul .logout:hover a {
+  color: rgb(17, 68, 208);
+  background-color: white;
+  width: fit-content;
+  border-radius: 30px;
+  height: fit-content;
+  padding-bottom: 5px;
+  padding: 7px;
+}
+
+/* ////////// */
+@media (min-width: 100px) and (max-width: 1200px) {
+  .fixedNav {
+    height: 60px;
+  }
+
+  .fixedNav .App-logo {
+    height: 80%;
+    width: 80px;
+    position: relative;
+    left: -10px;
+  }
+  .fixedNav .logout {
+    margin-top: 15px;
+    position: relative;
+    right: 10px;
+  }
+}
