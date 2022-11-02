@@ -3,7 +3,7 @@ import React from "react";
 function NotFound(props) {
   return (
     <div>
-      <h1>Not nFound</h1>
+      <h1>oops, Not Found</h1>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import "./App.css";
 import React from "react";
-import Seller from "./Components/Seller/seller";
-import Buyer from "./Components/Buyer/Buyer";
+import Product from "./Components/Body/Products";
 import Login from "./Components/Login/Login";
 import {
   BrowserRouter as Router,
@@ -9,7 +8,6 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-// import FixedNav from "./Components/FixedNav/FixedNav";
 import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
@@ -19,20 +17,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/login" />} />
-
-          {sessionStorage.getItem("role") === "seller" ? (
-            <>
-              <Route path="/products" element={<Seller />} />
-              <Route path="/" element={<Navigate to="/products" />} />
-            </>
-          ) : null}
-
-          {sessionStorage.getItem("role") === "buyer" ? (
-            <>
-              <Route path="/products" element={<Buyer />} />
-              <Route path="/" element={<Navigate to="/products" />} />
-            </>
-          ) : null}
+          <Route path="/products" element={<Product />} />
+          <Route path="/" element={<Navigate to="/products" />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

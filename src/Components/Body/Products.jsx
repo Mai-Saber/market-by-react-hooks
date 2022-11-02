@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import * as Api from "../../Services/Products.json";
-import Button from "../../Common/Button";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./seller.css";
 import { Col, Row } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import * as Api from "../../Services/Products.json";
 import FixedNav from "../FixedNav/FixedNav";
 import AddBox from "../../Common/AddBox";
+import Button from "../../Common/Button";
+import "./Product.css";
 
-function Seller(props) {
+function Product(props) {
   const [products, setProducts] = useState([]);
-
+  const [totalPrice, setTotalPrice] = useState("");
+  const [prices] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [account, setAccount] = useState({
     productName: "",
     firstColor: "",
@@ -17,11 +19,22 @@ function Seller(props) {
     secondColor: "",
     secondPrice: "",
   });
-
   useEffect(() => {
     setProducts(Api.default);
   }, []);
 
+  const handleCart = ({ price, item }) => {
+    cartItems.push(item);
+    setCartItems(cartItems);
+    console.log(cartItems);
+    prices.push(price);
+    const initialValue = 0;
+    const totalPrice = prices.reduce(
+      (previousValue, currentValue) => previousValue + currentValue,
+      initialValue
+    );
+    setTotalPrice(totalPrice);
+  };
   const handleAddProduct = () => {
     document.getElementById("addBox").style.display = "block";
     setAccount({
@@ -62,7 +75,7 @@ function Seller(props) {
   return (
     <>
       <FixedNav />
-      {/* /// */}
+
       <AddBox
         handleChange={handleChange}
         handleSubmit={handleSubmit}
@@ -73,10 +86,9 @@ function Seller(props) {
         secondPrice={account.secondPrice}
       />
       {/* /// */}
-
       <div className="content">
         <Row>
-          <Col xs={9}>
+          <Col xs={7}>
             <table>
               <thead>
                 <tr>
@@ -84,6 +96,7 @@ function Seller(props) {
                   <th>Product Id</th>
                   <th>Product Color </th>
                   <th>Product price </th>
+                  {sessionStorage.getItem("role") === "buyer" && <th> </th>}
                 </tr>
               </thead>
               <tbody>
@@ -105,22 +118,63 @@ function Seller(props) {
                         </p>
                       ))}
                     </td>
+                    {sessionStorage.getItem("role") === "buyer" && (
+                      <td>
+                        {product.productColor.map((ele) => (
+                          <p key={ele.colorPrice}>
+                            <button
+                              className="btn btn-primary"
+                              onClick={() =>
+                                handleCart({
+                                  price: ele.colorPrice,
+                                  item:
+                                    ele.colorName + " " + product.productName,
+                                })
+                              }
+                            >
+                              Buy
+                            </button>
+                          </p>
+                        ))}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
             </table>
           </Col>
-          <Col xs={3}>
-            <Button
-              className=" btn btn-primary addButton"
-              content="Add Product"
-              onClick={handleAddProduct}
-            />
-          </Col>
+
+          {sessionStorage.getItem("role") === "buyer" ? (
+            <Col xs={12} xl={4}>
+              <div className="shoppingCart">
+                <h4> Hello in your Shopping Cart</h4>
+                <div className="cartItems">
+                  <p> 1- your cart include : </p>
+                  {cartItems.map((ele) => (
+                    <ul key={ele}>
+                      <li>{ele}</li>
+                    </ul>
+                  ))}
+                </div>
+                <div>
+                  2- The total price of the products you have purchased ={" "}
+                  {totalPrice} LE
+                </div>
+              </div>
+            </Col>
+          ) : (
+            <Col xs={3}>
+              <Button
+                className=" btn btn-primary addButton"
+                content="Add Product"
+                onClick={handleAddProduct}
+              />
+            </Col>
+          )}
         </Row>
       </div>
     </>
   );
 }
 
-export default Seller;
+export default Product;

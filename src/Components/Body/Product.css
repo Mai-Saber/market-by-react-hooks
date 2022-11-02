@@ -1,0 +1,80 @@
+.content table {
+  width: 100%;
+  margin-left: 30px;
+}
+.content table th,
+.content table td {
+  border: 3px solid rgb(157, 157, 157);
+  padding: 5px;
+}
+.content .addButton{
+  margin-left: 20px;
+}
+/* ///////// */
+.shoppingCart {
+  border: 1px solid rgb(19, 19, 231);
+  border-radius: 30px;
+  padding: 15px;
+  height: 80vh;
+  margin-left: 30px;
+}
+.shoppingCart h4 {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.494);
+  color: blue;
+}
+.shoppingCart .cartItems {
+  border-bottom: 1px solid blue;
+  margin-bottom: 10px;
+  height: 40vh;
+  overflow: auto;
+}
+
+/* add box */
+.addBox {
+  background-color: #fff;
+  border: 1px solid rgb(41, 60, 202);
+  padding: 5px;
+  margin: auto;
+  margin-bottom: 10px;
+  width: 60%;
+  border-radius: 10px;
+  text-align: center;
+  display: none;
+}
+.addBox h1 {
+  color: blue;
+}
+.addBox input {
+  width: fit-content;
+  height: 30px;
+  margin: 5px;
+}
+.addBox button {
+  display: block;
+  margin: auto;
+}
+/* //// */
+@media (min-width: 100px) and (max-width: 1200px) {
+  .content table {
+    display: inline-block;
+    height: 60vh !important;
+    overflow: auto;
+    margin-bottom: 20px;
+  }
+  .shoppingCart {
+    height: fit-content;
+  }
+  .shoppingCart .cartItems {
+    border-bottom: 1px solid blue;
+    margin-bottom: 10px;
+    height: 15vh;
+    overflow: auto;
+  }
+
+  .addBox input {
+    display: inline-block;
+    width: 63%;
+    margin: 0 0 20px 0 !important;
+  }
+}
