@@ -11,7 +11,7 @@
   margin-top: 10% !important;
   background-color: white;
   width: fit-content;
-  padding: 50px;
+  padding: 40px 50px 50px 50px;
   border-radius: 20px;
 }
 
@@ -20,16 +20,17 @@
 }
 .Login .box .dropDown {
   font-size: 20px;
+  padding: 10px;
 }
 .Login .box .dropDown select {
-  width: fit-content;
+  width: 10rem;
   margin-left: 20px;
   border: 1px solid rgb(0, 68, 255);
   border-radius: 20px;
-  padding: 3px;
-  background-color: rgba(244, 238, 238, 0.426);
+  padding: 5px;
+  background-color: rgba(207, 200, 200, 0.426);
 }
 .Login .box button {
   position: relative;
-  top: 30px;
+  top: 20px;
 }

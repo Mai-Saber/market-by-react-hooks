@@ -6,27 +6,44 @@ import FixedNav from "../FixedNav/FixedNav";
 import AddBox from "../../Common/AddBox";
 import Button from "../../Common/Button";
 import "./Product.css";
+import { set } from "react-hook-form";
 
 function Product(props) {
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState("");
   const [prices] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-  const [account, setAccount] = useState({
+  const [newProduct, setNewProduct] = useState({
     productName: "",
     firstColor: "",
     firstPrice: "",
     secondColor: "",
     secondPrice: "",
   });
+
   useEffect(() => {
     setProducts(Api.default);
   }, []);
 
   const handleCart = ({ price, item }) => {
-    cartItems.push(item);
+    const obj = {
+      name: item,
+      price: price,
+      id: cartItems.length + 1,
+      quantity: 1,
+    };
+    cartItems.push(obj);
     setCartItems(cartItems);
-    console.log(cartItems);
+
+    for (let i = 0; i < cartItems.length - 1; i++) {
+      const ele = cartItems[i];
+      if (ele.name === item) {
+        ele.quantity += 1;
+        cartItems.pop();
+        setCartItems(cartItems);
+      }
+    }
+    // handle price///
     prices.push(price);
     const initialValue = 0;
     const totalPrice = prices.reduce(
@@ -36,8 +53,9 @@ function Product(props) {
     setTotalPrice(totalPrice);
   };
   const handleAddProduct = () => {
+    document.getElementById("addButton").style.display = "none";
     document.getElementById("addBox").style.display = "block";
-    setAccount({
+    setNewProduct({
       productName: "",
       firstColor: "",
       firstPrice: "",
@@ -47,13 +65,13 @@ function Product(props) {
   };
   const handleSubmit = (e) => {
     const obj = {
-      productName: account.productName,
+      productName: newProduct.productName,
       productId: products.length + 1,
       productColor: [
-        { colorName: account.firstColor, colorPrice: account.firstPrice },
+        { colorName: newProduct.firstColor, colorPrice: newProduct.firstPrice },
         {
-          colorName: account.secondColor,
-          colorPrice: account.secondPrice,
+          colorName: newProduct.secondColor,
+          colorPrice: newProduct.secondPrice,
         },
       ],
     };
@@ -61,17 +79,22 @@ function Product(props) {
       e.preventDefault();
     } else {
       document.getElementById("addBox").style.display = "none";
-      setAccount(products.push(obj));
+      document.getElementById("addButton").style.display = "block";
+      setNewProduct(products.push(obj));
     }
   };
   const handleChange = (e) => {
     const newAccountState = {
-      ...account,
+      ...newProduct,
       [e.target.name]: e.target.value,
     };
-    setAccount(newAccountState);
-    console.log(account);
+    setNewProduct(newAccountState);
   };
+  const handleCancel = () => {
+    document.getElementById("addBox").style.display = "none";
+    document.getElementById("addButton").style.display = "block";
+  };
+
   return (
     <>
       <FixedNav />
@@ -79,16 +102,33 @@ function Product(props) {
       <AddBox
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        productName={account.productName}
-        firstColor={account.firstColor}
-        firstPrice={account.firstPrice}
-        secondColor={account.secondColor}
-        secondPrice={account.secondPrice}
+        handleCancel={handleCancel}
+        productName={newProduct.productName}
+        firstColor={newProduct.firstColor}
+        firstPrice={newProduct.firstPrice}
+        secondColor={newProduct.secondColor}
+        secondPrice={newProduct.secondPrice}
       />
       {/* /// */}
       <div className="content">
+        {sessionStorage.getItem("role") === "seller" && (
+          <Row className="header">
+            <Col xs={9}>
+              <h3>Hello, these are the products that are in your market</h3>
+            </Col>
+            <Col xs={3}>
+              <Button
+                id="addButton"
+                className=" btn btn-primary addButton"
+                content="Add Product"
+                onClick={handleAddProduct}
+              />
+            </Col>
+          </Row>
+        )}
+
         <Row>
-          <Col xs={7}>
+          <Col xs={sessionStorage.getItem("role") === "seller" ? 12 : 7}>
             <table>
               <thead>
                 <tr>
@@ -114,7 +154,7 @@ function Product(props) {
                     <td>
                       {product.productColor.map((ele) => (
                         <p key={ele.colorPrice}>
-                          <span>{ele.colorPrice}</span>
+                          <span>{ele.colorPrice} </span>
                         </p>
                       ))}
                     </td>
@@ -124,6 +164,7 @@ function Product(props) {
                           <p key={ele.colorPrice}>
                             <button
                               className="btn btn-primary"
+                              title="Add to cart"
                               onClick={() =>
                                 handleCart({
                                   price: ele.colorPrice,
@@ -132,7 +173,7 @@ function Product(props) {
                                 })
                               }
                             >
-                              Buy
+                              <i className="ri-shopping-cart-fill"></i>
                             </button>
                           </p>
                         ))}
@@ -144,31 +185,28 @@ function Product(props) {
             </table>
           </Col>
 
-          {sessionStorage.getItem("role") === "buyer" ? (
-            <Col xs={12} xl={4}>
+          {sessionStorage.getItem("role") === "buyer" && (
+            <Col xs={4}>
               <div className="shoppingCart">
                 <h4> Hello in your Shopping Cart</h4>
                 <div className="cartItems">
                   <p> 1- your cart include : </p>
+
                   {cartItems.map((ele) => (
-                    <ul key={ele}>
-                      <li>{ele}</li>
+                    <ul key={ele.id}>
+                      <li>
+                        <span>-{ele.name} </span>
+                        <span>{ele.price} LE</span>
+                        <span>{ele.quantity + "x"}</span>
+                      </li>
                     </ul>
                   ))}
                 </div>
                 <div>
-                  2- The total price of the products you have purchased ={" "}
+                  2- total=
                   {totalPrice} LE
                 </div>
               </div>
-            </Col>
-          ) : (
-            <Col xs={3}>
-              <Button
-                className=" btn btn-primary addButton"
-                content="Add Product"
-                onClick={handleAddProduct}
-              />
             </Col>
           )}
         </Row>

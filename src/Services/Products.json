@@ -7,36 +7,36 @@
 "colorPrice" : 200
 },
 {
-"colorName" : "Blue",
+"colorName" : "yellow",
 "colorPrice" : 250
 }
 ]
 },
 {
-"productName" : "Orange",
+"productName" : "Mango",
 "productId" : 2,
 "productColor" : [
 {
-"colorName" : "Red",
-"colorPrice" : 100
+"colorName" : "green",
+"colorPrice" : 50
 },
 {
-"colorName" : "Blue",
-"colorPrice" : 125
+"colorName" : "yellow",
+"colorPrice" : 100
 }
 ]
 },
 {
-"productName" : "Banana",
+"productName" : "Watermelon",
 "productId" : 3,
 "productColor" : [
 {
 "colorName" : "Red",
-"colorPrice" : 500
+"colorPrice" : 50
 },
 {
-"colorName" : "Blue",
-"colorPrice" : 550
+"colorName" : "yellow",
+"colorPrice" : 70
 }
 ]
 },
@@ -45,20 +45,20 @@
 "productId" : 4,
 "productColor" : [
 {
-"colorName" : "Red",
-"colorPrice" : 100
+"colorName" : "white",
+"colorPrice" : 70
 },
 {
-"colorName" : "Blue",
-"colorPrice" : 125
+"colorName" : "grey",
+"colorPrice" : 20
 }
 ]
 },
-{"productName" : "Mango",
+{"productName" : "banana",
 "productId" : 5,
 "productColor" : [
 {
-"colorName" : "Red",
+"colorName" : "yellow",
 "colorPrice" : 300
 },
 {

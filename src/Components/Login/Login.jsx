@@ -6,14 +6,11 @@ function Login(props) {
 
   const handleChange = (e) => {
     setRole(e.target.value);
-   
   };
 
   const handleSubmit = () => {
-     console.log(role);
     sessionStorage.setItem("role", role);
     window.location = "/products";
-    console.log(sessionStorage.getItem("role"));
   };
   return (
     <div className="Login">
@@ -22,12 +19,17 @@ function Login(props) {
         <div className="dropDown">
           <label htmlFor="roles">Choose A role:</label>
           <select name="roles" id="roles" value={role} onChange={handleChange}>
-            <option value="">Choose role</option>
+            <option value="">Choose a role</option>
             <option value="seller">Seller</option>
             <option value="buyer">Buyer</option>
           </select>
         </div>
-        <button className="btn btn-primary" onClick={handleSubmit}>
+        <button
+          className="btn btn-primary"
+          onClick={handleSubmit}
+          id="submit"
+          disabled={role === "" ? true : false}
+        >
           Submit
         </button>
       </div>
