@@ -83,7 +83,8 @@ function Product(props) {
       document.getElementById("addBox").style.display = "none";
       document.getElementById("addButton").style.display = "block";
       setNewProduct(products.push(obj));
-      toast.success("this item has been added");
+      
+      toast.success("this item has been added ");
     }
   };
   const handleChange = (e) => {
