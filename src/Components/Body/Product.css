@@ -6,6 +6,7 @@
   width: 90%;
   margin: auto;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 .content table th,
 .content table td {
@@ -40,6 +41,8 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 0.5px solid rgb(176, 171, 171);
+  position: relative;
+  right: 10px;
 }
 
 /* add box */
@@ -69,6 +72,9 @@
 }
 /* //// */
 @media (min-width: 100px) and (max-width: 1200px) {
+  .content .addButton {
+  width: 100%;
+}
   .content table {
     height: 60vh !important;
     overflow: auto;

@@ -1,5 +1,8 @@
 import "./App.css";
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Product from "./Components/Body/Products";
 import Login from "./Components/Login/Login";
 import {
@@ -13,6 +16,7 @@ import NotFound from "./Components/NotFound/NotFound";
 function App() {
   return (
     <>
+      <ToastContainer />
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />

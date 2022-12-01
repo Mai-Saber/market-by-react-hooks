@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as Api from "../../Services/Products.json";
 import FixedNav from "../FixedNav/FixedNav";
 import AddBox from "../../Common/AddBox";
 import Button from "../../Common/Button";
 import "./Product.css";
-import { set } from "react-hook-form";
+
 
 function Product(props) {
   const [products, setProducts] = useState([]);
@@ -55,6 +56,7 @@ function Product(props) {
   const handleAddProduct = () => {
     document.getElementById("addButton").style.display = "none";
     document.getElementById("addBox").style.display = "block";
+    document.getElementById("addBox").scrollIntoView({ behavior: "smooth" });
     setNewProduct({
       productName: "",
       firstColor: "",
@@ -81,6 +83,7 @@ function Product(props) {
       document.getElementById("addBox").style.display = "none";
       document.getElementById("addButton").style.display = "block";
       setNewProduct(products.push(obj));
+      toast.success("this item has been added");
     }
   };
   const handleChange = (e) => {
@@ -141,7 +144,7 @@ function Product(props) {
               </thead>
               <tbody>
                 {products.map((product) => (
-                  <tr key={product.productId}>
+                  <tr key={product.productId} id={"row" + product.productId}>
                     <td>{product.productName}</td>
                     <td>{product.productId}</td>
                     <td>
@@ -189,9 +192,8 @@ function Product(props) {
             <Col xs={4}>
               <div className="shoppingCart">
                 <h4> Hello in your Shopping Cart</h4>
+                <p> 1- your cart include : </p>
                 <div className="cartItems">
-                  <p> 1- your cart include : </p>
-
                   {cartItems.map((ele) => (
                     <ul key={ele.id}>
                       <li>
