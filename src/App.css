@@ -1,3 +1,9 @@
-body {
-  font-family: "Lucida Console", "Courier New", monospace !important;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap");
+
+body,
+html {
+  font-family: "Nerko One rev=2";
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: rgba(235, 128, 244, 0.157) !important;
 }

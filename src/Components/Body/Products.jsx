@@ -8,7 +8,6 @@ import AddBox from "../../Common/AddBox";
 import Button from "../../Common/Button";
 import "./Product.css";
 
-
 function Product(props) {
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState("");
@@ -33,9 +32,11 @@ function Product(props) {
       id: cartItems.length + 1,
       quantity: 1,
     };
+    // add to cart //
     cartItems.push(obj);
     setCartItems(cartItems);
 
+    // handle quantity//
     for (let i = 0; i < cartItems.length - 1; i++) {
       const ele = cartItems[i];
       if (ele.name === item) {
@@ -83,7 +84,7 @@ function Product(props) {
       document.getElementById("addBox").style.display = "none";
       document.getElementById("addButton").style.display = "block";
       setNewProduct(products.push(obj));
-      
+
       toast.success("this item has been added ");
     }
   };
@@ -97,6 +98,10 @@ function Product(props) {
   const handleCancel = () => {
     document.getElementById("addBox").style.display = "none";
     document.getElementById("addButton").style.display = "block";
+  };
+  const handleClearCart = () => {
+    setCartItems([]);
+    setTotalPrice("");
   };
 
   return (
@@ -117,10 +122,12 @@ function Product(props) {
       <div className="content">
         {sessionStorage.getItem("role") === "seller" && (
           <Row className="header">
-            <Col xs={9}>
-              <h3>Hello, these are the products that are in your market</h3>
+            <Col xs={7} xl={9}>
+              <h3>
+                Hello Admin, these are the products that are in your market
+              </h3>
             </Col>
-            <Col xs={3}>
+            <Col xs={5} xl={3}>
               <Button
                 id="addButton"
                 className=" btn btn-primary addButton"
@@ -132,12 +139,18 @@ function Product(props) {
         )}
 
         <Row>
-          <Col xs={sessionStorage.getItem("role") === "seller" ? 12 : 7}>
+          <Col
+            xs={12}
+            xl={sessionStorage.getItem("role") === "seller" ? 12 : 7}
+          >
             <table>
               <thead>
                 <tr>
                   <th>Product Name</th>
-                  <th>Product Id</th>
+                  {sessionStorage.getItem("role") === "seller" && (
+                    <th>Product Id</th>
+                  )}
+
                   <th>Product Color </th>
                   <th>Product price </th>
                   {sessionStorage.getItem("role") === "buyer" && <th> </th>}
@@ -147,7 +160,9 @@ function Product(props) {
                 {products.map((product) => (
                   <tr key={product.productId} id={"row" + product.productId}>
                     <td>{product.productName}</td>
-                    <td>{product.productId}</td>
+                    {sessionStorage.getItem("role") === "seller" && (
+                      <td>{product.productId}</td>
+                    )}
                     <td>
                       {product.productColor.map((ele) => (
                         <p key={ele.colorName}>
@@ -190,8 +205,8 @@ function Product(props) {
           </Col>
 
           {sessionStorage.getItem("role") === "buyer" && (
-            <Col xs={4}>
-              <div className="shoppingCart">
+            <Col xs={12} xl={4}>
+              <div className="shoppingCart" id="shoppingCart">
                 <h4> Hello in your Shopping Cart</h4>
                 <p> 1- your cart include : </p>
                 <div className="cartItems">
@@ -207,8 +222,15 @@ function Product(props) {
                 </div>
                 <div>
                   2- total=
-                  {totalPrice} LE
+                  {" " + totalPrice} LE
                 </div>
+                <button
+                  className="btn btn-danger clear"
+                  onClick={handleClearCart}
+                >
+                  {" "}
+                  Clear Cart{" "}
+                </button>
               </div>
             </Col>
           )}

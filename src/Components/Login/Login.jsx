@@ -17,7 +17,7 @@ function Login(props) {
       <div className="box">
         <h1> Do you Buyer or seller ?</h1>
         <div className="dropDown">
-          <label htmlFor="roles">Choose A role:</label>
+          <label htmlFor="roles">Choose A role :</label>
           <select name="roles" id="roles" value={role} onChange={handleChange}>
             <option value="">Choose a role</option>
             <option value="seller">Seller</option>

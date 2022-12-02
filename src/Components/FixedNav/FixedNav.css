@@ -1,7 +1,7 @@
 .fixedNav {
-  background: #7f00ff;
-  background: -webkit-linear-gradient(to right, #b712cd, #6f20be);
-  background: linear-gradient(to right, #9d24ad, #7a20d3);
+  background: #923ee6;
+  background: -webkit-linear-gradient(to right, #b618cb, #6f20be);
+  background: linear-gradient(to right, #d439e9, #4a1c77);
   color: white;
   padding-left: 2rem;
   z-index: 999;
@@ -47,10 +47,12 @@
   }
 
   .fixedNav .App-logo {
-    height: 80%;
-    width: 80px;
+    height: 70%;
+    width: 70px;
     position: relative;
-    left: -10px;
+    left: -15px;
+   margin-top: 3px;
+    
   }
   .fixedNav .logout {
     margin-top: 15px;

@@ -24,7 +24,7 @@ function AddBox(props) {
             id="outlined-basic"
             variant="outlined"
             type="text"
-            placeholder="color1"
+            label="First Color"
             name="firstColor"
             value={props.firstColor}
             onChange={props.handleChange}
@@ -35,7 +35,7 @@ function AddBox(props) {
             id="outlined-basic"
             variant="outlined"
             type="number"
-            placeholder="firstPrice"
+            label="First Price"
             name="firstPrice"
             value={props.firstPrice}
             onChange={props.handleChange}
@@ -46,7 +46,7 @@ function AddBox(props) {
             id="outlined-basic"
             variant="outlined"
             type="text"
-            placeholder="secondColor"
+            label="Second Color"
             name="secondColor"
             value={props.secondColor}
             onChange={props.handleChange}
@@ -57,7 +57,7 @@ function AddBox(props) {
             id="outlined-basic"
             variant="outlined"
             type="number"
-            placeholder="secondPrice"
+            label="Second Price"
             name="secondPrice"
             value={props.secondPrice}
             onChange={props.handleChange}
