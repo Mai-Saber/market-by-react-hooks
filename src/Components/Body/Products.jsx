@@ -77,17 +77,31 @@ function Product(props) {
           colorPrice: newProduct.secondPrice,
         },
       ],
-
-      
     };
-    if (obj.productName.trim() === "") {
+
+    if (
+      obj.productName.trim() === "" ||
+      newProduct.firstColor.trim() === "" ||
+      newProduct.firstPrice.trim() === ""
+    ) {
       e.preventDefault();
-      toast.error("Product Name can't be empty :(");
+      toast.error("Name, First color and it's price can't be empty");
+    } else if (
+      newProduct.secondColor.trim() !== "" &&
+      newProduct.secondPrice.trim() === ""
+    ) {
+      e.preventDefault();
+      toast.error(" second price can't be empty ");
+    } else if (
+      newProduct.secondColor.trim() === "" &&
+      newProduct.secondPrice.trim() !== ""
+    ) {
+      e.preventDefault();
+      toast.error(" second color can't be empty ");
     } else {
       document.getElementById("addBox").style.display = "none";
       document.getElementById("addButton").style.display = "block";
       setNewProduct(products.push(obj));
-
       toast.success("this item has been added ");
     }
   };
