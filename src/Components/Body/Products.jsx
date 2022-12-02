@@ -237,9 +237,9 @@ function Product(props) {
                     </ul>
                   ))}
                 </div>
-                <div>
-                  2- total=
-                  {" " + totalPrice} LE
+                <div className="total">
+                  2- total =
+                  {" " + totalPrice + " "} LE
                 </div>
                 <button
                   className="btn btn-danger clear"
