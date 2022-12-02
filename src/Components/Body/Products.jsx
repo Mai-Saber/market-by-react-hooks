@@ -77,9 +77,12 @@ function Product(props) {
           colorPrice: newProduct.secondPrice,
         },
       ],
+
+      
     };
     if (obj.productName.trim() === "") {
       e.preventDefault();
+      toast.error("Product Name can't be empty :(");
     } else {
       document.getElementById("addBox").style.display = "none";
       document.getElementById("addButton").style.display = "block";

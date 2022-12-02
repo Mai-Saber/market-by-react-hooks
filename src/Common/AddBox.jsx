@@ -17,6 +17,7 @@ function AddBox(props) {
             name="productName"
             value={props.productName}
             onChange={props.handleChange}
+            required
           />
         </Col>
         <Col xs={12} xl={4} className="col">
@@ -83,3 +84,7 @@ function AddBox(props) {
 }
 
 export default AddBox;
+
+
+
+
