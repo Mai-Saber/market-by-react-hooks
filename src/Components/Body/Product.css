@@ -99,7 +99,7 @@
     margin: 0px 10px;
   }
   .content .addButton {
-    width: 50%;
+   width: fit-content;
   }
   .content table {
     width: 80% !important;
